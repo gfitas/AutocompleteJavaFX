@@ -5,7 +5,7 @@ package AutocompleteJavaFX;
  */
 import java.util.List;
 
-abstract class ActionToDo {
+public abstract class Action {
     public abstract List<? extends Object> methodCalledWhenSomthingIsTyped(String search);
     public abstract void methodCalledWhenSomthingIsSelected(Object object);
 }

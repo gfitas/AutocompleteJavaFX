@@ -19,13 +19,13 @@ import java.util.List;
 public class AutocompleteJavaFX {
     private TextField textField;
     private ContextMenu contextMenu;
-    private ActionToDo action;
+    private Action action;
     public AutocompleteJavaFX(TextField textSearch,ContextMenu textSearchContextMenu){
         this.textField = textSearch;
         this.contextMenu = textSearchContextMenu;
         textSearch.setContextMenu(textSearchContextMenu);
     }
-    public void setAction(ActionToDo action) {
+    public void setAction(Action action) {
         this.action = action;
         this.textField.setContextMenu(contextMenu);
         this.textField.textProperty().addListener((observable, oldValue, newValue) -> {
