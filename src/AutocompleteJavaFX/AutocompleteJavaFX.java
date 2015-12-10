@@ -19,13 +19,13 @@ import java.util.List;
 public class AutocompleteJavaFX {
     private TextField textField;
     private ContextMenu contextMenu;
-    private Action action;
+    private ActionToDo action;
     public AutocompleteJavaFX(TextField textSearch,ContextMenu textSearchContextMenu){
         this.textField = textSearch;
         this.contextMenu = textSearchContextMenu;
         textSearch.setContextMenu(textSearchContextMenu);
     }
-    public void setAction(Action action) {
+    public void setAction(ActionToDo action) {
         this.action = action;
         this.textField.setContextMenu(contextMenu);
         this.textField.textProperty().addListener((observable, oldValue, newValue) -> {
@@ -36,7 +36,7 @@ public class AutocompleteJavaFX {
         Thread thread = new Thread(){
             @Override
             public void run(){
-                List<? extends Object> listOfObj = action.methodForGettingItem(textField.getText());
+                List<? extends Object> listOfObj = action.methodCalledWhenSomthingIsTyped(textField.getText());
                 Platform.runLater(new Runnable() {
                     @Override
                     public void run() {
@@ -47,7 +47,7 @@ public class AutocompleteJavaFX {
                             menuItem.setOnAction(new EventHandler<ActionEvent>() {
                                 public void handle(ActionEvent t) {
                                     textField.setText(Obj.toString());
-                                    action.methodWhenAnItemIsSelected(Obj);
+                                    action.methodCalledWhenSomthingIsSelected(Obj);
                                 }
                             });
                         }
